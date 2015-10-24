@@ -2,7 +2,7 @@ ifttt-build-notifier
 ===================
 A Simple Jenkins Build Status Notifier for IFTTT Maker Channel Trigger
 
-Posts the build status to IFTTT Maker Channel to tigger actions with all other Channels available on IFTTT. For example tweet or send a email build notification or Light-up a IoT connected device.
+Posts the build status to IFTTT Maker Channel to trigger actions with all other Channels available on IFTTT. For example tweet or send an email build notification or Light-up a IoT connected device.
 
 Create an installable artifact:
 
@@ -29,13 +29,16 @@ Login to https://ifttt.com and perform the following steps:
 ```
 Jenkins Build Status for Project: {{Value1}}, Build Number:{{Value2}}, Status: {{Value3}} 
 ```
+Note: IFTTT Maker Channel `Receive a Web Request` trigger accepts three values and plugin sends Project Name as Value1, Build Number as Value2 and Status as Value3
+
 10. Finally click on `Create Action` button
 11. Give a name to newly created recipe
-12. Click on `Create Recipe` button to create the receipe
+12. Click on `Create Recipe` button to create the recipe
 13. Now, navigate to https://ifttt.com/maker
 14. Copy the Key from `Your key is:` section
 
-You can also use template receipe from here https://ifttt.com/recipes/336376-send-a-direct-tweet-when-jenkins-build-is-completed
+You can also use template recipe from here https://ifttt.com/recipes/336376-send-a-direct-tweet-when-jenkins-build-is-completed
+(see more recipes below)
 
 Back in Jenkins setup a project to send build notifications:
 
@@ -47,3 +50,7 @@ Back in Jenkins setup a project to send build notifications:
 4. That's it
    
 Now whenever a build is triggered and completed, you will see a Twitter message with build status
+
+More Recipe Templates:
+1. Sending build notification to your smartphone (requires IF app) - https://ifttt.com/recipes/336400-jenkins-build-notification-to-phone
+2. Sending build notification to your Android Smart Watch https://ifttt.com/recipes/336401-jenkins-build-notification-to-android-watch
