@@ -35,6 +35,8 @@ Jenkins Build Status for Project: {{Value1}}, Build Number:{{Value2}}, Status: {
 13. Now, navigate to https://ifttt.com/maker
 14. Copy the Key from `Your key is:` section
 
+You can also use template receipe from here https://ifttt.com/recipes/336376-send-a-direct-tweet-when-jenkins-build-is-completed
+
 Back in Jenkins setup a project to send build notifications:
 
 1. Configure a Job or Project for which you want to enable IFTTT trigger
