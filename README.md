@@ -52,5 +52,6 @@ Back in Jenkins setup a project to send build notifications:
 Now whenever a build is triggered and completed, you will see a Twitter message with build status
 
 More Recipe Templates:
-1. Sending build notification to your smartphone (requires IF app) - https://ifttt.com/recipes/336400-jenkins-build-notification-to-phone
-2. Sending build notification to your Android Smart Watch https://ifttt.com/recipes/336401-jenkins-build-notification-to-android-watch
+
+* Sending build notification to your smartphone (requires IF app) - https://ifttt.com/recipes/336400-jenkins-build-notification-to-phone
+* Sending build notification to your Android Smart Watch https://ifttt.com/recipes/336401-jenkins-build-notification-to-android-watch
