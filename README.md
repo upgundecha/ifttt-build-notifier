@@ -13,7 +13,9 @@ Create an installable artifact:
 5. Manage Jenkins > Plugins > Advanced > Upload ```./target/snsnotify.hpi```
 6. Restart Jenkins ([$JENKINS_URL]/restart)
 
-Now, login to IFTTT and do the following:
+Let's setup a build notification trigger which will send a direct twitter message when a build is completed with following steps:
+
+First, login to IFTTT and do the following:
 
 1. Create a new Recipe
 2. Click on `this` part
@@ -25,20 +27,22 @@ Now, login to IFTTT and do the following:
 7. Enter or select `Twitter` in `Choose Action Channel`
 8. Select `Send a direct message to yourself` in `Choose an Actin`
 9. Enter following message in `Message field` in `Complete Action Fields`
+```
+Jenkins Build Status for Project: {{Value1}}, Build Number:{{Value2}}, Status: {{Value3}} 
+```
+10. Finally click on `Create Action` button
+11. Give a name to newly created recipe
+12. Click on `Create Recipe` button to create the receipe
+13. Now, navigate to https://ifttt.com/maker
+14. Copy the Key from `Your key is:` section
 
-10. Finally click on `Create Recipe` 
+Back in Jenkins, let's setup a project to send build notifications:
 
-
-1. Create an SNS Topic, subscribe a target SQS queue (or create subscription via email etc.)
-2. Right-click on targeted SQS queue to confirm subscription 
-
-Finally, back to Jenkins...
-
-1. Manage Jenkins > Configure Jenkins to use AWS creds and newly created Topic ARN.
-   You can also specify the default bevaiour in case you want to send out also an 
-   SNS notification when the build is started (off by default). 
-2. As part of your job: add post-build step for SNS notification, optionally configure 
-   subject and message (you can make use of build and environment variables, which do 
-   get substituted), resp. override Topic ARN (if you do not want to stick with globally 
-   configured one).
+1. Configure the Job or Project for which you want to enable IFTTT trigger
+2. Add `IFTTT Build Notifier` action from `Add Post Build Action` list
+3. Enter `Event Name` specified in Step#4 above (for example `build_notification`)
+4. Enter `Key copied` from Step#14 above
+3. Save the configuration
+4. That's it
    
+Now whenever a build triggers, you will see a Twitter message with build status
