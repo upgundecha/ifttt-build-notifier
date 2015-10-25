@@ -2,7 +2,7 @@ ifttt-build-notifier
 ===================
 A Simple Jenkins Build Status Notifier for IFTTT Maker Channel Trigger
 
-Posts the build status to IFTTT Maker Channel to trigger actions with all other Channels available on IFTTT. For example notify build status via a tweet or an email or Light-up a IoT connected device.
+Posts the build status to IFTTT Maker Channel to trigger actions with all other Channels available on IFTTT. For example notify build status via a tweet or add trello card or Light-up a IoT connected device.
 
 Create an installable artifact:
 
