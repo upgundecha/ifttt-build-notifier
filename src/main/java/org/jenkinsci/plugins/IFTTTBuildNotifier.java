@@ -64,21 +64,18 @@ public class IFTTTBuildNotifier extends Notifier {
             WebResource webResource = client
                     .resource("http://maker.ifttt.com/trigger/" + getEventName() + "/with/key/" + getKey());
 
-            String input = "{\"value1\":\"" + projectName + "\",\"value2\":\""
-                    + buildNumber + "\",\"value3\":\"" + buildResult + "\"}";
+            JSONObject json = new JSONObject();
+            json.put("value1", projectName);
+            json.put("value2", buildNumber);
+            json.put("value3", buildResult);
 
             ClientResponse response = webResource.type("application/json")
-                    .post(ClientResponse.class, input);
+                    .post(ClientResponse.class, json.toString());
 
             if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
+                throw new RuntimeException("Failed to call IFTTT Build Trigger - HTTP error code : "
                         + response.getStatus());
             }
-
-            LOG.info("Output from Server .... \n");
-            String output = response.getEntity(String.class);
-            LOG.info(output);
-
         } catch (Exception e) {
             listener.error("Failed to call IFTTT Trigger...");
             listener.error(e.toString());
