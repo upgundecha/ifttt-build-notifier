@@ -12,7 +12,7 @@
     <groupId>org.jenkinsci.plugins</groupId>
     <artifactId>ifttt-build-notifier</artifactId>
     <name>IFTTT Build Notifier</name>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <description>Simple Jenkins Build Status Notifier for IFTTT Maker Channel Trigger</description>
     <url>https://wiki.jenkins-ci.org/display/JENKINS/IFTTT+Build+Notifier</url>
