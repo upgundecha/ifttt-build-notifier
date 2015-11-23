@@ -8,7 +8,7 @@
         <relativePath />
     </parent>
 
-    <groupId>org.jenkinsci.plugins</groupId>
+    <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>ifttt-build-notifier</artifactId>
     <name>IFTTT Build Notifier</name>
     <version>1.1-SNAPSHOT</version>
