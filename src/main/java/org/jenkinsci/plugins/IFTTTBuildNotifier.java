@@ -30,19 +30,37 @@ public class IFTTTBuildNotifier extends Notifier {
 
     private final String key;
     private final String eventName;
+    private final String successEventName;
+    private final String failureEventName;
 
     @DataBoundConstructor
-    public IFTTTBuildNotifier(String key, String eventName) {
+    public IFTTTBuildNotifier(String key, String eventName, String successEventName, String failureEventName) {
         this.key = key;
         this.eventName = eventName;
+        this.successEventName = successEventName;
+        this.failureEventName = failureEventName;
     }
 
     public String getKey() {
         return key;
     }
-
+    
     public String getEventName() {
         return eventName;
+    }
+
+    public String getSuccessEventName() {
+        return successEventName;
+    }
+    
+    public String getFailureEventName() {
+        return failureEventName;
+    }
+    
+    public String getStatusEventName(String result) {
+        if(result.equals("SUCCESS"))
+            return this.getSuccessEventName();
+        return this.getFailureEventName();
     }
 
     public BuildStepMonitor getRequiredMonitorService() {
@@ -63,6 +81,10 @@ public class IFTTTBuildNotifier extends Notifier {
 
             WebResource webResource = client
                     .resource("http://maker.ifttt.com/trigger/" + getEventName() + "/with/key/" + getKey());
+            WebResource webStatusResource = client
+                    .resource("http://maker.ifttt.com/trigger/" + getStatusEventName(buildResult) + "/with/key/" + getKey());
+            
+            System.out.println("http://maker.ifttt.com/trigger/" + getStatusEventName(buildResult) + "/with/key/" + getKey());
 
             JSONObject json = new JSONObject();
             json.put("value1", projectName);
@@ -75,6 +97,14 @@ public class IFTTTBuildNotifier extends Notifier {
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed to call IFTTT Build Trigger - HTTP error code : "
                         + response.getStatus());
+            }
+            
+            ClientResponse statusResponse = webStatusResource.type("application/json")
+                    .post(ClientResponse.class, json.toString());
+            
+            if (statusResponse.getStatus() != 200) {
+                throw new RuntimeException("Failed to call IFTTT Status Build Trigger - HTTP error code : "
+                        + statusResponse.getStatus());
             }
         } catch (Exception e) {
             listener.error("Failed to call IFTTT Trigger...");
@@ -116,11 +146,31 @@ public class IFTTTBuildNotifier extends Notifier {
 
             return FormValidation.ok();
         }
-
+        
         public FormValidation doCheckEventName(
                 @QueryParameter("eventName") final String key)
                 throws IOException, ServletException {
 
+            if (key.length() == 0)
+                return FormValidation.error("Please set the Event Name");
+
+            return FormValidation.ok();
+        }        
+
+        public FormValidation doCheckSuccessEventName(
+                @QueryParameter("successEventName") final String key)
+                throws IOException, ServletException {
+            
+            if (key.length() == 0)
+                return FormValidation.error("Please set the Event Name");
+
+            return FormValidation.ok();
+        }
+        
+        public FormValidation doCheckFailureEventName(
+                @QueryParameter("failureEventName") final String key)
+                throws IOException, ServletException {
+            
             if (key.length() == 0)
                 return FormValidation.error("Please set the Event Name");
 

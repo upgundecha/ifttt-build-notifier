@@ -2,6 +2,12 @@
     <f:entry title="${%Event Name}" field="eventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
           <f:textbox/>
         </f:entry>
+    <f:entry title="${%Success Event Name}" field="successEventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
+          <f:textbox/>
+        </f:entry>        
+    <f:entry title="${%Failure Event Name}" field="failureEventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
+          <f:textbox/>
+        </f:entry>
     <f:entry title="${%Key}" field="key" help="/plugin/ifttt-build-notifier/help-key.html">
       <f:password/>
     </f:entry>
