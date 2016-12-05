@@ -1,3 +1,4 @@
+<?jelly escape-by-default='true'?>
 <div>
   Plugin for notifying build results via IFTTT Maker Channel Trigger
 </div>

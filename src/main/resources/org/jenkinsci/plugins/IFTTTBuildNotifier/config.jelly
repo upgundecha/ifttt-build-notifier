@@ -1,5 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
     <f:entry title="${%Event Name}" field="eventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
+          <f:textbox/>
+        </f:entry>
+    <f:entry title="${%Success Event Name}" field="successEventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
+          <f:textbox/>
+        </f:entry>
+    <f:entry title="${%Failure Event Name}" field="failureEventName" help="/plugin/ifttt-build-notifier/help-eventName.html">
           <f:textbox/>
         </f:entry>
     <f:entry title="${%Key}" field="key" help="/plugin/ifttt-build-notifier/help-key.html">
